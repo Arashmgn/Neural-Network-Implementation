@@ -62,3 +62,7 @@ class Layer:
         self.weight -= dW*learning_rate
         self.bias   -= dB*learning_rate
 
+    def __repr__(self) -> str:
+        return (str("Layer input dim: "+str(self.features))+
+                str("Layer output dim: "+str(self.neurons))+
+                str("Layer activation function: "+str(self.features)))

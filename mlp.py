@@ -25,3 +25,5 @@ class MLP:
             dW, dB, error = self.network[i].backpropagation(error)
             self.network[i].learn(dW, dB, self.learning_rate)
     
+    def __repr__(self) -> str:
+        return str(str([repr(layer) for layer in self.network]) + "learining rate: "+str(self.learning_rate))
