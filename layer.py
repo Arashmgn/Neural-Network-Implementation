@@ -4,6 +4,8 @@ class Layer:
     def __init__(self,features,neurons,activationfunc):
         self.features            = features
         self.neurons             = neurons
+        if activationfunc not in ['linear','relu','softmax']:
+            raise ValueError("Wrong activation functions value")
         self.activationfunc      = activationfunc
         self.weight              = np.random.randn(self.neurons, self.features)
         self.bias                = np.random.randn(neurons,1)
@@ -31,16 +33,21 @@ class Layer:
             return self.derivativeReLu(input)
         elif self.activationfunc == "softmax":
             return self.derivativeSofMax(input)
-        else :
+        elif self.activationfunc == 'linear' :
             return 1
+        else:
+            raise ValueError("Wrong activation functions value")
     
     def activationFunction(self,inputs):
         if self.activationfunc   == "relu":
             return self.activationReLu(inputs)
         elif self.activationfunc == "softmax":
             return self.activationSoftMax(inputs)
-        else:
+        elif self.activationfunc == 'linear' :
             return inputs
+        else:
+            raise ValueError("Wrong activation functions value")
+
 
     def feedforward(self,input):
         self.input = input
